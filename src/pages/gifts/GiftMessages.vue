@@ -1,0 +1,3 @@
+<template>
+    Gift messages
+</template>
