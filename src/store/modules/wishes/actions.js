@@ -8,7 +8,7 @@ export default {
         let wishes = [];
         for(let key in responseData){
             let wish = {
-                id: responseData[key].id,
+                id: key,
                 title: responseData[key].title,
                 image: responseData[key].image,
                 description: responseData[key].description

@@ -3,27 +3,43 @@
     :show="gifting" 
     title="Write a message to a user you are gifting this book!"
     :closable="false"
-    @close="gifting = false">Testing</base-dialog>
+    @close="closeGiftingForm">
+        <gift-form @gift="giftABook"></gift-form>
+    </base-dialog>
     <h3>{{title}}</h3>
     <div class="container">
         <img :src="image" :alt="title + ' image'">
         <div class="container-content">
             <p>{{description}}</p>
-            <base-button mode="flat" @click="giftABook">Gift this book!</base-button>
+            <base-button mode="flat" @click="openGiftingForm">Gift this book!</base-button>
         </div>
     </div>
 </template>
 
 <script>
+import GiftForm from '../gifts/giftsForm.vue';
+
 export default {
-    props: ['title', 'description', 'image'],
+    props: ['id', 'title', 'description', 'image'],
+    components: {
+        GiftForm
+    },
      data(){
         return {
             gifting: false
         }
     },
     methods:{
-        giftABook(){
+        giftABook(gift){
+            this.gifting = false;
+            gift.wishId = this.id;
+            console.log(gift, this.id);
+            this.$store.dispatch('gifts/saveGift', gift);
+        },
+        closeGiftingForm(){
+            this.gifting = false;
+        },
+        openGiftingForm(){
             this.gifting = true;
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <base-card v-for="wish in wishes" :key="wish.id">
-        <wishlist-item :title="wish.title" :description="wish.description" :image="wish.image"></wishlist-item>
+        <wishlist-item :id="wish.id" :title="wish.title" :description="wish.description" :image="wish.image"></wishlist-item>
     </base-card>
 </template>
 
