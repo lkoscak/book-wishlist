@@ -8,16 +8,35 @@
         <li>
           <router-link to="/wishlist">Wishes</router-link>
         </li>
-        <li>
-          <router-link to="/register">Register</router-link>
+         <li v-if="isAuthenticated">
+          <router-link to="/gifts">Gifts</router-link>
         </li>
-        <li>
-          <router-link to="/wishlistItems">My wishes</router-link>
+        <li v-else>
+          <router-link to="/register">Login</router-link>
+        </li>
+        <li v-if="isAuthenticated">
+          <base-button @click="logout">Logout</base-button>
         </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+import {mapGetters} from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters('auth', ['isAuthenticated'])
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('auth/logout');
+      this.$router.replace('/wishlist');
+    }
+  }
+}
+</script>
 
 <style scoped>
 header {

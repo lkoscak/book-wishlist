@@ -4,5 +4,8 @@ export default {
     },
     setWishes(state, wishes){
         state.wishes = wishes;
+    },
+    setLastFetch(state){
+        state.lastFetch = new Date().getTime();
     }
 }

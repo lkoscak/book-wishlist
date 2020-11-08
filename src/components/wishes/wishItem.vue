@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import GiftForm from '../gifts/giftsForm.vue';
+import GiftForm from '../gifts/GiftsForm.vue';
 
 export default {
-    props: ['id', 'title', 'description', 'image'],
+    props: ['id', 'title', 'description', 'image', 'userId'],
     components: {
         GiftForm
     },
@@ -32,8 +32,8 @@ export default {
     methods:{
         giftABook(gift){
             this.gifting = false;
-            gift.wishId = this.id;
-            console.log(gift, this.id);
+            gift.user = this.userId;
+            gift.wish = this.id;
             this.$store.dispatch('gifts/saveGift', gift);
         },
         closeGiftingForm(){
